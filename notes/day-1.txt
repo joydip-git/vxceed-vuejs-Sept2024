@@ -1,0 +1,45 @@
+JavaScript: Obect-based programming language
+data types:
+number, string, boolean, object, function
+
+null, undefined, NaN, Infinity 
+
+loosely-typed programming language
+
+
+JS engines:
+chrome: V8
+safari: Js Core
+firefox: spidermonkey
+
+Callback in JS
+
+1. prepration stage:
+	JS engine executes only
+		a. variable declarations
+		b. function declarations (NOT function expressions)
+	Variable and function Hoisting
+2. execution stage
+	JS engine executes the assigment, fuction calls etc.
+
+
+ECMA
+ECMAScript (ES)
+
+2015 - ES6 - let
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
