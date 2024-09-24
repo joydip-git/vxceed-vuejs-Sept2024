@@ -1,0 +1,4 @@
+spread operator
+rest operator
+object destructuring
+closure: preserving the lexical environment (local variables (state) of the outer scopes) for an inner function
