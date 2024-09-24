@@ -2,3 +2,110 @@ spread operator
 rest operator
 object destructuring
 closure: preserving the lexical environment (local variables (state) of the outer scopes) for an inner function
+
+ES6 - 2015
+ES15 - 2024
+
+
+ES6+ code => <ES6
+s/w: transpiler
+JS => JS: Babel
+TS => JS: Typescript Compiler (tsc)
+
+Babel:
+core package => @babel/core
+cli package => @babel/cli
+
+plugins => individual packages for individual purpose
+preset => an array/collection of smaller packages
+
+ES6+ syntax transformers related preset package: @babel/preset-env
+
+
+module formats:
+a. common js => 
+	export: module.exports = {prop1: member1,....}
+	import: const {} = require('module-name')
+
+b. ES6 module format=>
+	export: export member
+	import: import {} from 'module-name'
+
+c. AMD:
+	export: define('',[],function(){ })
+	import: 
+
+D. UMD (Universal Module Defintion) format
+
+module loader for web apps:
+what is it?
+a module loader understands the import/require/export/exports keywords and resolves the dependencies between files and load the linked files in the runtime
+browser does not have a module loader s/w like node js,
+so you have to supply a module loader s/w to browser,such as: require js, system js, common js etc.
+
+require js => this module loader is popluar with browser 
+caveat => it only understands a module format => AMD(asynchronous module definition) format. It does not understand ES6 module format.
+
+
+Vue JS:
+a (JS) framework to create client-side SPA
+even Vue JS can be used in small segment of your application
+even Vue JS is used to create application with SSR (Server side rendering)
+even Vue JS is used to create application with SSG (Static site generation)
+
+SFC => Single File Component
+*.vue
+
+component:
+abcd.vue => template file (HTML+code+css)
+
+let data = 100
+document.createElement('span')
+
+data++
+
+document.get...('').add('click',function(){})
+
+
+1. Options API
+	{
+		data:
+		methods:
+	}
+2. Composition API
+	
+
+component file
+code: 
+{
+    data: function () {
+        return {
+            counter: 10
+        }
+    },
+    methods: {
+        increase() {
+            this.counter++
+        }
+    }
+}
+
+design:
+<div id="root">
+        <span>{{counter}}</span>
+        <br>
+        <button type="button" v-on:click="increase">Increase</button>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
