@@ -1,0 +1,93 @@
+There are two ways of intercepting property access in JavaScript: getter / setters and Proxies.
+Vue 2 used getter / setters exclusively due to browser support limitations. 
+In Vue 3, 
+	a. Proxies are used for reactive objects and 
+	b. getter / setters are used for refs
+
+
+ref function:
+it takes an inner value and returns a reactive and mutable "Ref" object, which has a single property: "value" that points to the inner value.
+
+const name = ref('anil')
+
+
+Binding: 
+
+A. data binding: data from code is bound to template
+to pass data from component code to template
+
+a. interpolation/mustache syntax: {{prop-name}}
+b. v-bind directive: 
+	1. <element v-bind:attribute="prop-name">
+	2. <element :attribute="prop-name">
+
+B. event binding: binding a method in component with event of a control in template
+to pass data from template to component code
+using v-on directive we bind event with method
+
+1. <element v-on:event-name="methodName">
+2. <element @event-name="methodName">
+
+Two way binding
+------------------------
+on the same element you are using both bindings
+1. if you want to pass data present in the control itself
+<input type="text" 
+		:value="prop-name" 
+		@input="$event => methodName($event.target.value)">
+
+if you want to pass some other data (apart from target data)
+<button type="button" @click="()=>methodName(value)">
+
+
+2. using v-model
+
+
+component-naming:
+SimpleCalculator => simple-calculator 
+use: => 
+	a. <simple-calculator /> 
+	or
+	b. <SimpleCalculator />
+
+
+const first = ref(0)
+const second = ref(0)
+const result = ref(0)
+
+
+data(){
+	return {
+		first:0,
+		second:0,
+		result:0
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
