@@ -1,0 +1,5 @@
+display: 
+image, name, price, rating
+
+ProductList
+ProductDetail
