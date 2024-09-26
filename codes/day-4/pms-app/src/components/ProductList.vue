@@ -1,7 +1,7 @@
 <template>
   <h2>List of Products</h2>
   <br />
-  <FilterProduct />
+  <FilterProduct @filter-text-changed="(value) => (textToFilter = value)" />
   <br />
   <table class="table table-hover">
     <thead>
@@ -14,7 +14,7 @@
     </thead>
     <tbody class="table-dark">
       <tr
-        v-for="p of products"
+        v-for="p of filteredProducts"
         :key="p.productId">
         <ProductRow :product="p" />
       </tr>
@@ -23,7 +23,7 @@
 </template>
 
 <!-- options api -->
-<!-- <script>
+<script>
   import { productRecords } from "../data/productrecords";
   import ProductRow from "./ProductRow.vue";
   import FilterProduct from "./FilterProduct.vue";
@@ -31,22 +31,45 @@
   export default {
     components: {
       ProductRow,
-      FilterProduct
+      FilterProduct,
     },
     data() {
       return {
         products: productRecords,
+        textToFilter: "",
       };
     },
+    computed: {
+      filteredProducts() {
+        if (this.products.length > 0 && this.textToFilter !== "") {
+          return this.products.filter((p) =>
+            p.productName
+              .toLocaleLowerCase()
+              .includes(this.textToFilter.toLocaleLowerCase())
+          );
+        } else return this.products;
+      },
+    },
   };
-</script> -->
+</script>
 
 <!-- composition api -->
-<script setup>
-  import { ref } from "vue";
+<!-- <script setup>
+  import { computed, ref } from "vue";
   import { productRecords } from "../data/productrecords";
   import ProductRow from "./ProductRow.vue";
   import FilterProduct from "./FilterProduct.vue";
 
   const products = ref(productRecords);
-</script>
+  const textToFilter = ref("");
+
+  const filteredProducts = computed(() => {
+    if (products.value.length > 0 && textToFilter.value !== "") {
+      return products.value.filter((p) =>
+        p.productName
+          .toLocaleLowerCase()
+          .includes(textToFilter.value.toLocaleLowerCase())
+      );
+    } else return products.value;
+  });
+</script> -->
