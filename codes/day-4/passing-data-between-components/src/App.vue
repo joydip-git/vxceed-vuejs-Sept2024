@@ -1,18 +1,19 @@
-<!-- <template>
+<template>
   <PostListOptionsAPI />
-</template> -->
-<!-- <script>
+</template>
+
+<script>
   import PostListOptionsAPI from "./components/PostListOptionsAPI.vue";
   export default {
     components: {
       PostListOptionsAPI,
     },
   };
-</script> -->
+</script>
 
-<template>
+<!-- <template>
   <PostListCompositionAPI />
 </template>
 <script setup>
   import PostListCompositionAPI from "./components/PostListCompositionAPI.vue";
-</script>
+</script> -->
