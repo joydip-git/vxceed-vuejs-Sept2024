@@ -6,13 +6,16 @@
       <tr>
         <th>Post ID</th>
         <th>Post Title</th>
+        <th>Delete</th>
       </tr>
     </thead>
     <tbody>
       <tr
         v-for="p of postlist"
         :key="p.id">
-        <PostDetailOptionsAPI :post="p" />
+        <PostDetailOptionsAPI
+          :post="p"
+          @delete-post="deletePostFromArray" />
       </tr>
     </tbody>
   </table>
@@ -24,4 +27,10 @@
   import PostDetailOptionsAPI from "./PostDetailOptionsAPI.vue";
 
   const postlist = ref(posts);
+  const deletePostFromArray = (id) => {
+    const index = this.postlist.findIndex((p) => p.id === id);
+    if (index >= 0) {
+      this.postlist.splice(index, 1);
+    }
+  };
 </script>

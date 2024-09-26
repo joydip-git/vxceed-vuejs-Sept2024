@@ -1,6 +1,8 @@
 <template>
   <h2>List of Products</h2>
   <br />
+  <FilterProduct />
+  <br />
   <table class="table table-hover">
     <thead>
       <tr>
@@ -24,9 +26,12 @@
 <!-- <script>
   import { productRecords } from "../data/productrecords";
   import ProductRow from "./ProductRow.vue";
+  import FilterProduct from "./FilterProduct.vue";
+
   export default {
     components: {
       ProductRow,
+      FilterProduct
     },
     data() {
       return {
@@ -41,6 +46,7 @@
   import { ref } from "vue";
   import { productRecords } from "../data/productrecords";
   import ProductRow from "./ProductRow.vue";
+  import FilterProduct from "./FilterProduct.vue";
 
   const products = ref(productRecords);
 </script>

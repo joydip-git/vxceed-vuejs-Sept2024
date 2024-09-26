@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <PostListOptionsAPI />
 </template>
 
@@ -9,11 +9,11 @@
       PostListOptionsAPI,
     },
   };
-</script>
+</script> -->
 
-<!-- <template>
+<template>
   <PostListCompositionAPI />
 </template>
 <script setup>
   import PostListCompositionAPI from "./components/PostListCompositionAPI.vue";
-</script> -->
+</script>

@@ -3,3 +3,11 @@ image, name, price, rating
 
 ProductList
 ProductDetail
+
+
+options api:						composition api:
+props									defineProps()
+data									ref()/reactive()
+methods								inner functions
+components							import the components
+emits									
