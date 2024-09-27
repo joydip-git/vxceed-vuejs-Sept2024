@@ -1,5 +1,5 @@
 {
-  "name": "watch-data-fetching-app",
+  "name": "passing-data-between-components",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -10,8 +10,8 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
-    "vue": "^3.4.29",
-    "watch-data-fetching-app": "file:"
+    "passing-data-between-components": "file:",
+    "vue": "^3.4.29"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.5",

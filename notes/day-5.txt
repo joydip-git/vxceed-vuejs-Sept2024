@@ -1,3 +1,5 @@
+v-model with nested component:
+
 v-model as attribute with nested component for two way binding:
 
 <NestedComp :props-name="data" @update:props-name="parent-method"/>
@@ -22,6 +24,45 @@ but if the props and emit name is something differnt from "modelValue" then foll
  which is equivalent to 
 
 <NestedComp :props-name="data" @update:props-name="parent-method"/>
+
+
+watch option, lifecycle and data fetching:
+1. data => reactive object with data. any change in the data will update the UI also.
+2. computed => a method (acts as a getter) which is used to derive any value from a data. if the data is updated, the computed property will be invoked instantly.
+3. methods=> regular methods used to mutate/update the data
+4. watch => a method/property which watches a data property just like computed property, but this watch property is used to write "side-effect causing code"
+
+
+lifecycle methods of a component
+---------------------------------------
+
+const header = document.createElement('h2')
+header.innerHTML=`Welcome to Watch and data fetching`
+document.getElementById("app").appendChild(header)
+
+
+
+<script>
+export default{
+	setUp(){
+		const name = ref('')
+		const updateName=(value)=> name.value = value;
+		return {name, updateName}
+	}
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
