@@ -1,0 +1,30 @@
+v-model as attribute with nested component for two way binding:
+
+<NestedComp :props-name="data" @update:props-name="parent-method"/>
+
+can be simplified into
+
+<NestedComp v-model:props-name="data"/>
+
+Rule: the event name (emit) must be like this in the nested component=> update:props-name and you must emit that event from the child and also pass data of the same type as that of the props type
+
+if the props name is "modelValue" and the emit name is "update:model-value", then following line can be written
+
+<NestedComp v-model="data"/>
+
+ which is equivalent to 
+
+<NestedComp :model-value="data" @update:model-value="parent-method"/>
+
+but if the props and emit name is something differnt from "modelValue" then following line should be written
+
+<NestedComp v-model:props-name="data"/>
+ which is equivalent to 
+
+<NestedComp :props-name="data" @update:props-name="parent-method"/>
+
+
+
+
+
+

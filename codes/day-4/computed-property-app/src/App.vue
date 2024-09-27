@@ -8,7 +8,7 @@
   <br />
   <button
     type="button"
-    @click="increase">
+    @click="counter++">
     Increase
   </button>
   <br />
@@ -35,6 +35,12 @@
       {{ name }}
     </li>
   </ul>
+  <p>
+    {{ call() }}
+  </p>
+  <p>
+    <MyCom />
+  </p>
 </template>
 
 <!-- 
@@ -76,11 +82,12 @@
 
 <script setup>
   import { computed, ref } from "vue";
+  import MyCom from "./components/MyCom.vue";
   const counter = ref(0);
   const name = ref("");
   const names = ref(["anil", "sunil", "joydip"]);
   const filterText = ref("");
-
+  const call = () => console.log("call...");
   const doubleUpCounter = computed(() => counter.value * 2);
   const filterNames = computed(() => {
     if (filterText.value !== "") {
