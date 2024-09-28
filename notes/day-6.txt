@@ -137,6 +137,84 @@ try{
 	isFetchOver = true
 }
 
+
+PostList => PostRow (for every post detail)
+		  => PostDetail
+
+http://localhost:4000					=> Home
+http://localhost:4000/home			=> Home
+
+http://localhost:4000/posts 			=> PostList (PostRow)
+http://localhost:4000/posts/view/1 => PostDetail
+
+
+
+routing:
+traditional: server-side routing
+client-side routing
+
+routing package: vue-router
+>npm i vue-router
+
+route: => 
+R1 => [{path:'/home' component:Home}
+R2 => {path:'/posts', component: PostList}
+R3 => {path:'/posts/view/:id', component: PostDetail}
+R4 => {path:'/', redirect:'/home'}] => Redirection
+
+const routerObject = createRouter({
+	routes:array-of-routes,
+	history:createWebHistory()
+})
+
+
+navigate from one route to another route
+declarative syntax: RouterLink component
+<RouterLink to=""></..>
+
+programmatic code:$router.push()/go()/back()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
 
 

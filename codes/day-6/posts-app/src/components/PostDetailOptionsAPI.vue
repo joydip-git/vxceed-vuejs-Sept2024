@@ -34,6 +34,12 @@
   <div v-else>
     <span>Loading...</span>
   </div>
+  <br />
+  <button
+    type="button"
+    @click="$router.push('/posts')">
+    Go Back
+  </button>
 </template>
 
 <script>
@@ -41,13 +47,13 @@
   import { mapActions, mapState } from "pinia";
 
   export default {
-    props: {
-      selectedId: {
-        type: Number,
-        required: true,
-        default: 0,
-      },
-    },
+    // props: {
+    //   selectedId: {
+    //     type: Number,
+    //     required: true,
+    //     default: 0,
+    //   },
+    // },
     computed: {
       ...mapState(usePostStore, ["errorInfo", "isFetchOver", "postInfo"]),
     },
@@ -55,7 +61,9 @@
       ...mapActions(usePostStore, ["fetchPostById"]),
     },
     mounted() {
-      this.fetchPostById(this.$props.selectedId);
+      console.log(+this.$route.params["id"]);
+      //this.fetchPostById(this.$props.selectedId);
+      this.fetchPostById(+this.$route.params["id"]);
     },
     // watch: {
     //   selectedId(newValue, oldValue) {
@@ -67,7 +75,8 @@
       selectedId: {
         handler: function (newValue, oldValue) {
           console.log(newValue, oldValue);
-          this.fetchPostById(this.$props.selectedId);
+          // this.fetchPostById(this.$props.selectedId);
+          this.fetchPostById(+this.$route.params["id"]);
         },
         lazy: false,
       },

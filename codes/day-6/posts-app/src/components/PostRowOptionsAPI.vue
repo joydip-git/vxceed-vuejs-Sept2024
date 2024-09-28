@@ -1,6 +1,9 @@
 <template>
-  <td @click="$emit('postIdSelected', post.id)">
-    <u>{{ post.id }}</u>
+  <!-- <td @click="$emit('postIdSelected', post.id)"> -->
+  <td>
+    <RouterLink :to="{ path: `/posts/view/${post.id}` }">
+      <u>{{ post.id }}</u>
+    </RouterLink>
   </td>
   <td>{{ post.title }}</td>
   <td>
@@ -12,7 +15,9 @@
   </td>
 </template>
 <script>
+  import { RouterLink } from "vue-router";
   export default {
+    components: { RouterLink },
     props: {
       post: {
         type: Object,
@@ -20,7 +25,8 @@
         default: null,
       },
     },
-    emits: ["deletePost", "postIdSelected"],
+    //emits: ["deletePost", "postIdSelected"],
+    emits: ["deletePost"],
     methods: {
       passPostId() {
         console.log(this.$props.post.id);

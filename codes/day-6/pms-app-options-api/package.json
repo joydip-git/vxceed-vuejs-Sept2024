@@ -1,5 +1,5 @@
 {
-  "name": "passing-data-between-components",
+  "name": "pms-app",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -10,8 +10,8 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
-    "passing-data-between-components": "file:",
     "pinia": "^2.2.2",
+    "pms-app": "file:",
     "vue": "^3.4.29",
     "vue-router": "^4.4.5"
   },

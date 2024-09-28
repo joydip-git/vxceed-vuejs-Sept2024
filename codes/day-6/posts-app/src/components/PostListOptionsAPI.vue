@@ -37,13 +37,13 @@
   </div>
   <br />
   <br />
-  <div v-if="selectedPostId > 0">
+  <!-- <div v-if="selectedPostId > 0">
     <PostDetailOptionsAPI :selected-id="selectedPostId" />
-  </div>
+  </div> -->
 </template>
 
 <script>
-  import PostDetailOptionsAPI from "./PostDetailOptionsAPI.vue";
+  //import PostDetailOptionsAPI from "./PostDetailOptionsAPI.vue";
   import PostRowOptionsAPI from "./PostRowOptionsAPI.vue";
   import { usePostsStore } from "../storage/usepostsstore";
   import { mapState, mapActions } from "pinia";
@@ -51,13 +51,13 @@
   export default {
     components: {
       PostRowOptionsAPI,
-      PostDetailOptionsAPI,
+      //PostDetailOptionsAPI,
     },
-    data() {
-      return {
-        selectedPostId: 0,
-      };
-    },
+    // data() {
+    //   return {
+    //     selectedPostId: 0,
+    //   };
+    // },
     computed: {
       ...mapState(usePostsStore, ["errorInfo", "isFetchOver", "postlist"]),
     },
