@@ -1,0 +1,107 @@
+passing data from one to another components:
+
+1. what if components are deeply nested? => provide/inject
+
+2. what is the components are not nested at all? (in case of rotuing)
+3. what if a componet mutates the data in its state which is also required to be updated in other components which are using same data?
+=> maintain the state of data NOT in a parent component (do not use "lift the state up" mechanism), but out of all components, in a separate place (store)
+
+application state management:
+state data will be maintained in a separate storage, NOT in components
+components must subscribe to the state or states
+when the state of data gets updated in the storage, the subscribed components will be automatically notified
+state updation in the storage is synchronous
+this is predictable way of data updation
+application-wide state management gurantees that there is "single source of truth (data)"
+
+in VueJS
+1. vuex
+2. pinia
+
+pinia installation=> install pinia: npm i pinia
+
+
+A. store creation
+----------------------------
+
+appstore (folder)
+	store.js
+
+import {defineStore} from 'pinia'
+
+1. options api style:
+	const storeObj = defineStore("astore",{
+			state(){
+				return {
+					prop1:initial-value,
+					prop2:initial-value,
+				}
+			},
+			getters:{
+				computedPropName(){
+					return derivedValue
+				}
+			},
+			actions:{
+				async dataFetchingmethod(){
+						//after fetching data
+						//mutating the state properties
+						this.prop1=data from backend
+				}	
+			}	
+		})
+		export default storeObj
+
+
+2. composition api style
+
+	const storeObj = defineStore("astore",
+		()=>{
+
+			//state
+			const prop1= ref(initial-value),
+			const prop2 = ref(initial-value),
+
+			//getters
+			const computedPropName= computed(
+				()=>{
+						return derivedValue
+					 }
+			)		
+
+			//actions
+			const dataFetchingmethod=async ()=>{
+						//after fetching data
+						//mutating the state properties
+						this.prop1=data from backend
+			}
+
+			return {prop1, prop2, computedPropName, dataFetchingmethod}	
+				
+		})
+
+
+B. Patch up Pinia with the application:
+-----------------------------------------------------
+
+main.js
+import {createPinia} from 'pinia'
+
+const piniaMiddleware = createPinia()
+
+const vueApp = createApp(route-comp)
+vueApp.use(piniaMiddleware)
+vueApp.mount('#app')
+
+
+C. subscribe a store from pinia in a component
+----------------------------------------------------------
+
+
+
+
+
+
+
+
+
