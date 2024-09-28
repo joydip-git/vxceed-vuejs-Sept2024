@@ -99,6 +99,28 @@ C. subscribe a store from pinia in a component
 
 
 
+watch =>
+
+watch:{
+	selectedId(){
+	}
+}
+
+watch:{
+	selectedId:{
+		handler:function(newValue, oldValue){
+			//code
+		},
+		lazy:false,
+		deep:true
+	}
+}
+
+
+
+
+
+
 
 
 

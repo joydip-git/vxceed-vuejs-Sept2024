@@ -36,23 +36,30 @@
   </div>
 </template>
 
-<script setup>
+<script>
   import { usePostStore } from "@/storage/usepoststore";
-  import { storeToRefs } from "pinia";
-  import { onMounted, watchEffect } from "vue";
+  import { useCommonStore } from "../storage/usecommonstore";
+  import { mapActions, mapState } from "pinia";
 
-  const store = usePostStore();
-  const { postInfo, errorInfo, isFetchOver } = storeToRefs(store);
-  const props = defineProps({
-    selectedId: {
-      type: Number,
-      required: true,
+  export default {
+    computed: {
+      ...mapState(usePostStore, ["errorInfo", "isFetchOver", "postInfo"]),
+      ...mapState(useCommonStore, ["selectedId"]),
     },
-  });
-  onMounted(() => store.fetchPostById(props.selectedId));
-  //incorrect code: because "watch" method here can be used to watch the following: state (created ussing ref() or reactive() method), computed properties (created using computed() method) and execute a side-effect causing code
-  //watch(props.selectedId, () => store.fetchPostById(props.selectedId));
-
-  //if you want to watch anything else (such as props) and as a result want a side-effect causing code to be executed, use "watchEffect"
-  watchEffect(() => store.fetchPostById(props.selectedId));
+    methods: {
+      ...mapActions(usePostStore, ["fetchPostById"]),
+    },
+    mounted() {
+      this.fetchPostById(this.selectedId);
+    },
+    watch: {
+      selectedId: {
+        handler: function (newValue, oldValue) {
+          console.log(newValue, oldValue);
+          this.fetchPostById(this.selectedId);
+        },
+        lazy: false,
+      },
+    },
+  };
 </script>

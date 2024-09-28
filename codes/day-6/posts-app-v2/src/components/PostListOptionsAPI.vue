@@ -19,7 +19,7 @@
               <PostRowOptionsAPI
                 :post="p"
                 @delete-post="deletePostFromArray"
-                @post-id-selected="(value) => (selectedPostId = value)" />
+                @post-id-selected="(value) => updateSelectedId(value)" />
             </tr>
           </tbody>
         </table>
@@ -37,8 +37,8 @@
   </div>
   <br />
   <br />
-  <div v-if="selectedPostId > 0">
-    <PostDetailOptionsAPI :selected-id="selectedPostId" />
+  <div v-if="selectedId > 0">
+    <PostDetailOptionsAPI />
   </div>
 </template>
 
@@ -46,6 +46,7 @@
   import PostDetailOptionsAPI from "./PostDetailOptionsAPI.vue";
   import PostRowOptionsAPI from "./PostRowOptionsAPI.vue";
   import { usePostsStore } from "../storage/usepostsstore";
+  import { useCommonStore } from "../storage/usecommonstore";
   import { mapState, mapActions } from "pinia";
 
   export default {
@@ -53,13 +54,9 @@
       PostRowOptionsAPI,
       PostDetailOptionsAPI,
     },
-    data() {
-      return {
-        selectedPostId: 0,
-      };
-    },
     computed: {
       ...mapState(usePostsStore, ["errorInfo", "isFetchOver", "postlist"]),
+      ...mapState(useCommonStore, ["selectedId"]),
     },
     methods: {
       deletePostFromArray(id) {
@@ -71,6 +68,7 @@
         }
       },
       ...mapActions(usePostsStore, ["fetchPosts"]),
+      ...mapActions(useCommonStore, ["updateSelectedId"]),
     },
     mounted() {
       this.fetchPosts();

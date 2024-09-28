@@ -37,49 +37,40 @@
 </template>
 
 <script>
+  import { usePostStore } from "@/storage/usepoststore";
+  import { mapActions, mapState } from "pinia";
+
   export default {
     props: {
       selectedId: {
         type: Number,
         required: true,
+        default: 0,
       },
     },
-    data() {
-      return {
-        isFetchOver: false,
-        errorInfo: "",
-        postInfo: null,
-      };
+    computed: {
+      ...mapState(usePostStore, ["errorInfo", "isFetchOver", "postInfo"]),
     },
     methods: {
-      async fetchPostById() {
-        try {
-          const resp = await fetch(
-            `https://jsonplaceholder.typicode.com/posts/${this.$props.selectedId}`
-          );
-          this.postInfo = await resp.json();
-          this.errorInfo = "";
-          this.isFetchOver = true;
-        } catch (error) {
-          this.postInfo = null;
-          this.errorInfo = error.message;
-          this.isFetchOver = true;
-        }
-      },
+      ...mapActions(usePostStore, ["fetchPostById"]),
     },
     mounted() {
-      this.fetchPostById();
+      this.fetchPostById(this.$props.selectedId);
     },
+    // watch: {
+    //   selectedId(newValue, oldValue) {
+    //     console.log(newValue, oldValue);
+    //     this.fetchPostById(this.$props.selectedId);
+    //   },
+    // },
     watch: {
-      selectedId(newValue, oldValue) {
-        console.log(newValue, oldValue);
-        //if (newValue !== oldValue) {
-        this.fetchPostById();
-        //}
+      selectedId: {
+        handler: function (newValue, oldValue) {
+          console.log(newValue, oldValue);
+          this.fetchPostById(this.$props.selectedId);
+        },
+        lazy: false,
       },
     },
-    // beforeUpdate() {
-    //   this.fetchPostById();
-    // },
   };
 </script>

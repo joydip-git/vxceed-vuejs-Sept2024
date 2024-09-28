@@ -19,7 +19,9 @@
               <PostRowCompositionAPI
                 :post="p"
                 @delete-post="deletePostFromArray"
-                @post-id-selected="(value) => (selectedPostId = value)" />
+                @post-id-selected="
+                  (value) => commonStore.updateSelectedId(value)
+                " />
             </tr>
           </tbody>
         </table>
@@ -38,21 +40,23 @@
   <br />
   <br />
   <div v-if="selectedPostId > 0">
-    <PostDetailCompositionAPI :selected-id="selectedPostId" />
+    <PostDetailCompositionAPI />
   </div>
 </template>
 
 <script setup>
-  import { onMounted, ref } from "vue";
+  import { onMounted } from "vue";
   import PostRowCompositionAPI from "./PostRowCompositionAPI.vue";
   import { usePostsStore } from "@/storage/usepostsstore";
+  import { useCommonStore } from "@/storage/usecommonstore";
   import { storeToRefs } from "pinia";
   import PostDetailCompositionAPI from "./PostDetailCompositionAPI.vue";
 
   const store = usePostsStore();
   const { errorInfo, postlist, isFetchOver } = storeToRefs(store);
 
-  const selectedPostId = ref(0);
+  const commonStore = useCommonStore();
+  const { selectedId: selectedPostId } = storeToRefs(commonStore);
 
   const deletePostFromArray = (id) => {
     const index = postlist.value.findIndex((p) => p.id === id);
