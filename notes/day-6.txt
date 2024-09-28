@@ -117,8 +117,27 @@ watch:{
 }
 
 
+example: How to access api response from product-service-backend
+---------------------------------------------------------------
+try{
+	const resp = await fetch('http://127.0.0.1:3003/product')
+	const apiResponse = await resp.json()
+	if(apiResponse.data !==null){
+		products = apiResponse.data
+		errorInfo = ''
+		isFetchOver = true
+	}else{
+		products = []
+		errorInfo = apiResponse.message
+		isFetchOver = true
+	}
+}catch(error){
+	products = []
+	errorInfo = error.message
+	isFetchOver = true
+}
 
-
+	
 
 
 
