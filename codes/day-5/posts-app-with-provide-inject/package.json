@@ -1,5 +1,5 @@
 {
-  "name": "provide-inject-app",
+  "name": "passing-data-between-components",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -10,6 +10,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "passing-data-between-components": "file:",
     "vue": "^3.4.29"
   },
   "devDependencies": {
